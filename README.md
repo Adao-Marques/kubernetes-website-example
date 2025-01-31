@@ -21,7 +21,7 @@ Clone the repository:
 
 bash
 Copy
-git clone https://github.com/yourusername/kubernetes-website-example.git
+git clone https://github.com/Adao-Marques/kubernetes-website-example.git
 cd kubernetes-website-example
 Apply the Kubernetes manifests:
 

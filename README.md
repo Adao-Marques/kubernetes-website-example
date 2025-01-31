@@ -1,61 +1,86 @@
-# kubernetes-website-example
-This repository provides a step-by-step guide and Kubernetes manifests to deploy a simple website using Nginx as the web server and MySQL as the database. It covers key Kubernetes concepts like Persistent Volumes, ConfigMaps, Deployments, and Services. Perfect for learning Kubernetes or building production-ready applications.
-Features
-🚀 Nginx as the web server.
+# **Kubernetes Website Example**
 
-🗃️ MySQL as the database with persistent storage.
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
-📁 Persistent Volume (PV) and Persistent Volume Claim (PVC) for data persistence.
+This repository provides a **step-by-step guide** and Kubernetes manifests to deploy a simple website using **Nginx** as the web server and **MySQL** as the database. It covers key Kubernetes concepts like **Persistent Volumes**, **ConfigMaps**, **Deployments**, and **Services**. Perfect for learning Kubernetes or building production-ready applications.
 
-🛠️ ConfigMap for Nginx configuration.
+---
 
-⚙️ Deployments and Services for scalability and accessibility.
+## **Features**
 
-Prerequisites
-A running Kubernetes cluster (e.g., Minikube, Kind, GKE, EKS, or AKS).
+- 🚀 **Nginx** as the web server.
+- 🗃️ **MySQL** as the database with persistent storage.
+- 📁 **Persistent Volume (PV)** and **Persistent Volume Claim (PVC)** for data persistence.
+- 🛠️ **ConfigMap** for Nginx configuration.
+- ⚙️ **Deployments** and **Services** for scalability and accessibility.
+- 🌐 **NodePort** and **Port Forwarding** for external access.
 
-kubectl installed and configured.
+---
 
-Quick Start
-Clone the repository:
+## **Prerequisites**
 
-bash
-Copy
-git clone https://github.com/Adao-Marques/kubernetes-website-example.git
-cd kubernetes-website-example
-Apply the Kubernetes manifests:
+Before you begin, ensure you have the following:
 
-bash
-Copy
-kubectl apply -f manifests/
-Access the application:
+- A running Kubernetes cluster (e.g., [Minikube](https://minikube.sigs.k8s.io/docs/), [Kind](https://kind.sigs.k8s.io/), or a cloud provider like GKE, EKS, or AKS).
+- `kubectl` installed and configured to interact with your cluster.
+- Basic knowledge of Kubernetes concepts (Pods, Deployments, Services, etc.).
 
-Use NodePort or kubectl port-forward to access the Nginx website.
+---
 
-Connect to MySQL using the mysql-service.
+## **Quick Start**
 
-Manifests Overview
-manifests/persistent-volume.yaml: Persistent Volume for MySQL data.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Adao-Marques/kubernetes-website-example.git
+   cd kubernetes-website-example
 
-manifests/persistent-volume-claim.yaml: Persistent Volume Claim for MySQL.
+2. Apply the Kubernetes manifests:
+   ```bash
+   kubectl apply -f manifests/
+3. Verify the resources:
+   ```bash
+   kubectl get all
+4. Access the application:
+  - Use NodePort or Port Forwarding to access the Nginx website.
+  - Connect to MySQL using the mysql-service.
 
-manifests/nginx-configmap.yaml: ConfigMap for Nginx configuration.
+## **Manifests Overview**
+The repository contains the following Kubernetes manifests:
 
-manifests/nginx-deployment.yaml: Deployment for Nginx.
+Persistent Storage
+  - manifests/persistent-volume.yaml: Persistent Volume for MySQL data.
+  - manifests/persistent-volume-claim.yaml: Persistent Volume Claim for MySQL.
 
-manifests/nginx-service.yaml: Service for Nginx.
+Nginx
+  - manifests/nginx-configmap.yaml: ConfigMap for Nginx configuration.
+  - manifests/nginx-deployment.yaml: Deployment for Nginx.
+  - manifests/nginx-service.yaml: Service for Nginx (NodePort).
 
-manifests/mysql-deployment.yaml: Deployment for MySQL.
+MySQL
+  - manifests/mysql-deployment.yaml: Deployment for MySQL.
+  - manifests/mysql-service.yaml: Service for MySQL (ClusterIP).
+    
+## **Accessing the Application**
+Nginx Website
+ - NodePort: Access the website using the NodePort assigned to the nginx-service:
+   ```bash
+   kubectl get services nginx-service
+Example: http://<Node-IP>:<NodePort>
+- Port Forwarding: Use kubectl port-forward for local access:
 
-manifests/mysql-service.yaml: Service for MySQL.
+   ```bash
+   kubectl port-forward service/nginx-service 8080:80
+Access at: http://localhost:8080
 
-Accessing the Application
-Nginx Website: Access via NodePort or kubectl port-forward.
+MySQL Database
+- Connect to MySQL internally using the mysql-service:
+     ```bash
+  kubectl run mysql-client --image=mysql:5.7 --rm -it --restart=Never -- \
+    mysql -h mysql-service -u root -ppassword
+---
+Connect with Me
 
-MySQL Database: Connect internally using the mysql-service.
-
-Contributing
-Contributions are welcome! Feel free to open issues or submit pull requests.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+👨‍💻 GitHub: Adao-Marques | 
+💼 LinkedIn: https://www.linkedin.com/in/ad%C3%A3o-marques/

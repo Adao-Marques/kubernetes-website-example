@@ -4,12 +4,13 @@
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
+
 This repository provides a **step-by-step guide** and Kubernetes manifests to deploy a simple website using **Nginx** as the web server and **MySQL** as the database. It covers key Kubernetes concepts like **Persistent Volumes**, **ConfigMaps**, **Deployments**, and **Services**. Perfect for learning Kubernetes or building production-ready applications.
 
 ---
 
 ## **Features**
-
+![image](https://github.com/user-attachments/assets/b92d44bc-4d7f-49c2-b9a5-eacb32e201a1)
 - 🚀 **Nginx** as the web server.
 - 🗃️ **MySQL** as the database with persistent storage.
 - 📁 **Persistent Volume (PV)** and **Persistent Volume Claim (PVC)** for data persistence.
